@@ -32,4 +32,8 @@ class Bank extends Model
     {
         return 'uuid';
     }
+
+    public function payment () {
+        return $this->hasMany(Payment::class);
+    }
 }

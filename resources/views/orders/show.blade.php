@@ -2,7 +2,11 @@
     <div class="py-10">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 shadow sm:rounded-lg overflow-hidden">
-
+  @if (session('success'))
+            <div class="mb-4 p-3 rounded bg-green-50 border border-green-200 text-green-800">
+                {{ session('success') }}
+            </div>
+        @endif
                 {{-- Header --}}
                 <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
                     <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
@@ -19,7 +23,8 @@
                         <span
                             class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium
                             @if($order->status == 'pending') bg-yellow-200 text-yellow-900
-                            @elseif($order->status == 'paid') bg-green-200 text-green-900
+                            @elseif($order->status == 'dikirim') bg-cyan-200 text-cyan-900
+                             @elseif($order->status == 'selesai') bg-green-200 text-green-900
                             @else bg-gray-200 text-gray-800 @endif">
                             {{ ucfirst($order->status) }}
                         </span>
@@ -97,7 +102,7 @@
         href="#"
         aria-disabled="true"
     @else
-        href="{{ route('pembayaran.index', $order->id) }}"
+        href="{{ route('pembayaran.index', $order->user_id) }}"
     @endif
     class="inline-flex items-center rounded-md px-4 py-1 text-sm font-semibold
         {{isset($order->payment->uuid)
@@ -106,6 +111,22 @@
         }}">
     {{isset($order->payment->uuid) ? 'Sudah Dibayar' : 'Bayar Sekarang' }}
                         </a>
+                    @endif
+
+                    @if ($order->status == "dikirim")
+                    <form action="{{ route('pesanan.selesai', $order->id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Yakin?')">
+
+                                    @csrf
+
+
+                                    <button type="submit"
+                                        class="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700">
+                                        SELESAI
+                                    </button>
+
+                                </form>
                     @endif
                 </div>
 

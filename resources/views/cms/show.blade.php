@@ -19,7 +19,7 @@
                             src="{{ asset('storage/' . $artikel->gambar) }}"
                             alt="{{ $artikel->title }}"
                             loading="lazy"
-                            class="h-40 w-full object-cover"
+                            class="h-60 w-full object-cover"
                         >
                     @else
                         <div class="h-40 bg-gray-200 flex items-center justify-center text-gray-400">
@@ -40,13 +40,13 @@
                         <div class="mt-auto flex items-center justify-between">
                             <a
                                 href="{{ route('pekerjaan.detail', $artikel->uuid) }}"
-                                class="text-blue-600 text-xs font-medium hover:underline"
+                                class="text-blue-600 text-md font-medium hover:underline"
                             >
                                 Baca →
                             </a>
 
                             @if ($artikel->pdf)
-                                <span class="text-[10px] text-gray-500">📄 PDF</span>
+                                <span class="text-md text-gray-500">📄 PDF</span>
                             @endif
                         </div>
                     </div>

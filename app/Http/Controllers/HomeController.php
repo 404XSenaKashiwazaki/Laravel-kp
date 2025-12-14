@@ -21,7 +21,7 @@ class HomeController extends Controller
         }
 
         $products = $query->paginate(10);
-        $gallery = Gallery::all();
+        $gallery = Gallery::latest()->get();
         // $products = Product::all();
         $site = Site::first();
         return view("welcome",["gallery" => $gallery, "products" => $products, "site" => $site]);
@@ -32,7 +32,7 @@ class HomeController extends Controller
      */
     public function work(Gallery $gallery)
     {
-        return view("gallery.detail",["gallery" => $gallery]);
+        return view("gallery.detail",["gallery" => $gallery->latest()]);
     }
 
     /**

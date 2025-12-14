@@ -36,6 +36,7 @@
                         <th class="px-4 py-2 border text-left">Nama</th>
                         <th class="px-4 py-2 border text-left">Produk</th>
                          <th class="px-4 py-2 border text-left">Total</th>
+                         <th class="px-4 py-2 border text-left">Status</th>
                           <th class="px-4 py-2 border text-left">Tanggal</th>
                         <th class="px-4 py-2 border text-center">Aksi</th>
                     </tr>
@@ -66,6 +67,16 @@
                             </td>
                              <td class="px-4 py-2 border">
                                 Rp {{ number_format($product->total_amount, 0, ',', '.') }}
+                            </td>
+                            <td class="px-4 py-2 border">
+                                 <span
+                            class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium
+                            @if($product->status == 'pending') bg-yellow-200 text-yellow-900
+                            @elseif($product->status == 'dikirim') bg-cyan-200 text-cyan-900
+                             @elseif($product->status == 'selesai') bg-green-200 text-green-900
+                            @else bg-gray-200 text-gray-800 @endif">
+                            {{ ucfirst($product->status) }}
+                        </span>
                             </td>
                              <td class="px-4 py-2 border">
                                {{ $product->created_at->translatedFormat('d F Y H:i') }}

@@ -12,6 +12,10 @@
             <p class="text-lg font-medium">{{ $payment->order->code }}</p>
         </div>
 
+        <div>
+            <label class="text-sm text-gray-500">BANK </label>
+            <p class="text-lg font-medium">{{ $payment->bank->name }} - {{ $payment->bank->nomor }}</p>
+        </div>
         <!-- Total -->
         <div>
             <label class="text-sm text-gray-500">Total Pembayaran</label>
@@ -27,7 +31,6 @@
                 {{ $payment->note ?? '-' }}
             </p>
         </div>
-
         <!-- Gambar -->
         <div class="md:col-span-2">
             <label class="text-sm text-gray-500">Bukti Pembayaran</label>

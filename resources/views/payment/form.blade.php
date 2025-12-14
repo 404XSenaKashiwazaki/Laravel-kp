@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto overflow-hidden shadow-sm sm:rounded-lg bg-white p-6">
 
+    <div class="max-w-2xl mx-auto overflow-hidden shadow-sm sm:rounded-lg bg-white p-6">
         {{-- Error Validation --}}
         @if ($errors->any())
             <div class="mb-4 p-3 rounded bg-red-50 border border-red-200 text-red-800">
@@ -32,6 +32,25 @@
                            border-gray-300 focus:border-sky-500 focus:ring-sky-500">
             </label>
 
+            <label class="block">
+                <span class="text-sm font-medium text-gray-700">Bank</span>
+                <select
+                    name="bank_id"
+                    required
+                    class="mt-2 rounded-md block w-full text-sm text-gray-600
+                        border-gray-300 focus:border-sky-500 focus:ring-sky-500">
+
+                    <option value="">-- Pilih Bank --</option>
+
+                    @foreach ($bank as $item)
+                        <option
+                            value="{{ $item->uuid }}"
+                            >
+                            {{ $item->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </label>
 
             {{-- Total --}}
             <label class="block">

@@ -12,7 +12,7 @@ class SiteSeeder extends Seeder
     {
         DB::table('site')->insert([
             [
-                'id' => Str::uuid(),
+                'uuid' => Str::uuid(),
                 'name' => 'Company Profile',
                 'deskripsi' => 'Website resmi company profile',
                 'gambar' => 'site/693c66e602ec2.jpeg',

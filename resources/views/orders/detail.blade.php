@@ -19,7 +19,8 @@
                         <span
                             class="inline-flex items-center rounded-md px-2 py-1 text-xs font-medium
                             @if($order->status == 'pending') bg-yellow-200 text-yellow-900
-                            @elseif($order->status == 'paid') bg-green-200 text-green-900
+                            @elseif($order->status == 'dikirim') bg-cyan-200 text-cyan-900
+                            @elseif($order->status == 'selesai') bg-green-200 text-green-900
                             @else bg-gray-200 text-gray-800 @endif">
                             {{ ucfirst($order->status) }}
                         </span>

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bank', function (Blueprint $table) {
-            $table->uuid();
+           $table->uuid('uuid')->unique();
             $table->string('name');
             $table->bigInteger('nomor');
             $table->text('note')->nullable();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ class PembayaranCotroller extends Controller
          $validated = $request->validate([
             'total'    => 'required|numeric|min:0',
             'note'     => 'nullable|string',
+            "bank_id" => "required|string",
             'gambar'   => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
 
@@ -30,6 +32,7 @@ class PembayaranCotroller extends Controller
         Payment::create([
             'uuid'     => (string) Str::uuid(),
             'order_id' => $id,
+            "bank_id" => $validated["bank_id"],
             'total'    => $validated['total'],
             'note'     => $validated['note'] ?? null,
             'gambar'   => $validated['gambar'],
@@ -48,7 +51,8 @@ class PembayaranCotroller extends Controller
     public function create(string $id)
     {
          $query = Order::with(['user', 'items.product'])->where('user_id', $id)->first();
-        return view("payment.form", ["order" => $query]);
+         $bank = Bank::all();
+        return view("payment.form", ["order" => $query,"bank" => $bank]);
     }
 
     /**

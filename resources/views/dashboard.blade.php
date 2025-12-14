@@ -43,6 +43,21 @@
             <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $totalPesanan }}</h2>
         </div>
     </div>
+     <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex items-center gap-4">
+        <div class="p-3 bg-purple-100 dark:bg-purple-900 rounded-full">
+           <svg xmlns="http://www.w3.org/2000/svg"
+     class="h-8 w-8 text-purple-600 dark:text-purple-300"
+     fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M19 7v14H5a2 2 0 01-2-2V5a2 2 0 012-2h9l5 4z" />
+</svg>
+
+        </div>
+        <div>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Total Konten</p>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $totalKonten }}</h2>
+        </div>
+    </div>
 
      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex items-center gap-4">
         <div class="p-3 bg-purple-100 dark:bg-purple-400 rounded-full">

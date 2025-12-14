@@ -14,7 +14,7 @@ class PesananController extends Controller
     {
 
 
-        $query = Order::with(['user', 'items.product',"payment"])->where('user_id', $id);
+        $query = Order::with(['user', 'items.product',"payment"])->where('user_id', $id)->latest();
 
         if ($request->search) {
             $search = '%' . $request->search . '%';
@@ -46,9 +46,12 @@ class PesananController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function finish(Request $request, Order $order)
     {
-        //
+        $order->update(["status" => "selesai"]);
+         return redirect()
+            ->route('pesanan.detail', $order->id)
+            ->with('success', 'Pesanan selesai');
     }
 
     /**

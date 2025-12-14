@@ -17,6 +17,7 @@ class Payment extends Model
         'order_id',
         'total',
         "note",
+        "bank_id",
         "gambar"
     ];
     protected static function boot()
@@ -35,5 +36,9 @@ class Payment extends Model
     public function order()
     {
         return $this->belongsTo(Order::class, 'order_id');
+    }
+
+    public function bank () {
+        return $this->belongsTo(Bank::class, 'bank_id');
     }
 }

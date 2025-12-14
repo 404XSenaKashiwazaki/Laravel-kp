@@ -14,26 +14,33 @@
             </div>
 
 
+{{-- @dd(url(url()->current()."/#tentang")) --}}
             {{-- Desktop Menu --}}
             <div class="hidden md:flex space-x-8 text-lg">
 
-                {{-- Home --}}
-                <a href="{{ url('/') }}"
-                   class="hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 font-medium' : '' }}">
-                    Home
-                </a>
+<a href="{{ url('/') }}"
+   id="nav-home"
+   class="hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 font-medium' : '' }}">
+    Home
+</a>
+
+
+
 
                 {{-- Gallery --}}
-                <a href="#gallery"
-                   class="hover:text-blue-600 {{ str_contains(request()->fullUrl(), '#gallery') ? 'text-blue-600 font-medium' : '' }}">
-                    Gallery
-                </a>
+              <a href="{{ url('/#gallery') }}" class="nav-link hover:text-blue-600">
+    Gallery
+</a>
 
-                {{-- Produk --}}
-                <a href="#produk"
-                   class="hover:text-blue-600 {{ str_contains(request()->fullUrl(), '#produk') ? 'text-blue-600 font-medium' : '' }}">
-                    Produk
-                </a>
+<a href="{{ url('/#produk') }}" class="nav-link hover:text-blue-600">
+    Produk
+</a>
+
+<a href="{{ url('/#tentang') }}" class="nav-link hover:text-blue-600">
+    Tentang
+</a>
+
+
 
                   <a href="{{ route('pekerjaan.index') }}"
                        class="{{ request()->routeIs('pekerjaan.*') ? 'text-blue-600 font-medium' : '' }} relative block hover:text-blue-600">
@@ -134,20 +141,28 @@
         {{-- Mobile Menu --}}
         <div id="mobile-menu" class="hidden md:hidden pb-4 space-y-2 text-lg">
 
-            <a href="{{ url('/') }}" class="block hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 font-medium' : '' }}">
-                Home
-            </a>
+<a href="{{ url('/') }}"
+   id="nav-home"
+   class="hover:text-blue-600 {{ request()->is('/') ? 'text-blue-600 font-medium' : '' }}">
+    Home
+</a>
 
-            <a href="#gallery" class="block hover:text-blue-600 {{ str_contains(request()->fullUrl(), '#gallery') ? 'text-blue-600 font-medium' : '' }}">
-                Gallery
-            </a>
 
-            <a href="#produk" class="block hover:text-blue-600 {{ str_contains(request()->fullUrl(), '#produk') ? 'text-blue-600 font-medium' : '' }}">
-                Produk
-            </a>
-            <a href="#produk" class="block hover:text-blue-600 {{ str_contains(request()->fullUrl(), '#produk') ? 'text-blue-600 font-medium' : '' }}">
-                Pekerjaan
-            </a>
+
+
+
+                {{-- Gallery --}}
+              <a href="{{ url('/#gallery') }}" class="nav-link hover:text-blue-600">
+    Gallery
+</a>
+
+<a href="{{ url('/#produk') }}" class="nav-link hover:text-blue-600">
+    Produk
+</a>
+
+<a href="{{ url('/#tentang') }}" class="nav-link hover:text-blue-600">
+    Tentang
+</a>
 
 
 
@@ -193,5 +208,52 @@
         btn.addEventListener('click', function () {
             menu.classList.toggle('hidden');
         });
+
+
+
     });
+
+
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const home = document.getElementById('nav-home');
+    const links = document.querySelectorAll('.nav-link');
+
+    function resetActive() {
+        home.classList.remove('text-blue-600', 'font-medium');
+        links.forEach(link => {
+            link.classList.remove('text-blue-600', 'font-medium');
+        });
+    }
+
+    function setActive() {
+        const hash = window.location.hash;
+        const path = window.location.pathname;
+
+        resetActive();
+
+        if (path !== '/' && !path.endsWith('/')) {
+            return;
+        }
+
+
+        if (!hash) {
+            home.classList.add('text-blue-600', 'font-medium');
+            return;
+        }
+
+
+        links.forEach(link => {
+            if (link.getAttribute('href').endsWith(hash)) {
+                link.classList.add('text-blue-600', 'font-medium');
+            }
+        });
+    }
+
+    setActive();
+    window.addEventListener('hashchange', setActive);
+});
+</script>
+

@@ -15,6 +15,7 @@ Route::get('/pekerjaan/{cms}', [CmsController::class, 'showById'])->name('pekerj
 Route::middleware('auth')->group(function () {
     Route::get('/pesanan/{id}', [PesananController::class, "index"])->name("pesanan.index");
     Route::get('/pesanan/detail/{id}', [PesananController::class, "detail"])->name("pesanan.detail");
+     Route::post('/pesanan/confirm/{order}', [PesananController::class, "finish"])->name("pesanan.selesai");
     Route::delete('/pesanan/{order}', [PesananController::class, "destroy"])->name("pesanan.destroy");
     Route::get('/dashboard', [DashboardController::class, "index"])->middleware(['verified',"role:admin"])->name('dashboard');
 

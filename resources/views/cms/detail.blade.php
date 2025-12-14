@@ -33,7 +33,7 @@
                 <a
                     href="{{ asset('storage/' . $data->pdf) }}"
                     target="_blank"
-                    class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                    class="inline-flex items-center px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
                 >
                     📄 Lihat / Unduh PDF
                 </a>
