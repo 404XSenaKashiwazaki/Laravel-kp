@@ -39,7 +39,7 @@
 
                         <div class="mt-auto flex items-center justify-between">
                             <a
-                                href="{{ route('profiles.legalitas.detail', $artikel->uuid) }}"
+                                href="{{ route('profiles.portofolio.detail', $artikel->uuid) }}"
                                 class="text-blue-600 text-md font-medium hover:underline"
                             >
                                 Baca →

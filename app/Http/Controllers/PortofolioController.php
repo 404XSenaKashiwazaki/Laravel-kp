@@ -2,50 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cms;
+use App\Models\Portofolio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
-class CmsController extends Controller
+class PortofolioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = Cms::query();
+        $query = Portofolio::query();
 
         if ($request->search) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
 
-        $cms = $query->latest()->paginate(10);
-
-        return view('cms.index', [
-            'cms' => $cms,
-        ]);
+        $portofolio = $query->latest()->paginate(10);
+        return view("portofolio.index",["portofolio" => $portofolio]);
     }
 
-     public function showAll(Request $request)
+     public function showById(Portofolio $portofolio)
     {
-        $query = Cms::query();
-
-        if ($request->search) {
-            $query->where('title', 'like', '%' . $request->search . '%');
-        }
-
-        $cms = $query->latest()->paginate(10);
-
-        return view('cms.show', [
-           "artikels" => $cms
-        ]);
-    }
-
-    public function showById(Cms $cms)
-    {
-        return view('cms.detail',["data" => $cms]);
+     
+        return view('portofolio.detail',["data" => $portofolio]);
     }
 
     /**
@@ -53,7 +36,7 @@ class CmsController extends Controller
      */
     public function create()
     {
-        return view('cms.form');
+        return view('portofolio.form');
     }
 
     /**
@@ -61,9 +44,8 @@ class CmsController extends Controller
      */
     public function store(Request $request)
     {
-
         $validate = $request->validate([
-            "title" => ["required","max:255","unique:cms,title"],
+            "title" => ["required","max:255","unique:portofolio,title"],
             "deskripsi" => ["required","max:255"],
             "isi" => ["required","max:1000"],
             "gambar" => ["required","image","mimes:jpeg,png,jpg,gif,svg","max:512000"],
@@ -71,33 +53,35 @@ class CmsController extends Controller
         ]);
         if ($request->hasFile('gambar')) {
             $filename = uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
-            $path = $request->file('gambar')->storeAs('cms', $filename, 'public');
+            $path = $request->file('gambar')->storeAs('portofolio', $filename, 'public');
             $validate["gambar"] = $path;
         }
         if ($request->hasFile('pdf')) {
             $filename = uniqid() . '.' . $request->file('pdf')->getClientOriginalExtension();
-            $path = $request->file('pdf')->storeAs('cms-files', $filename, 'public');
+            $path = $request->file('pdf')->storeAs('portofolio-files', $filename, 'public');
             $validate["pdf"] = $path;
         }
-        Cms::create($validate);
-        return Redirect::route('cms.index')->with('success', 'Data berhasil di tambahkan');
+        Portofolio::create($validate);
+        return Redirect::route('portofolio.index')->with('success', 'Data berhasil di tambahkan');
     }
+
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Cms $cms)
+    public function edit(Portofolio $portofolio)
     {
-        return view('cms.form', ["cms" => $cms]);
+        return view('portofolio.form', ["portofolio" => $portofolio]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cms $cms)
+    public function update(Request $request, Portofolio $portofolio)
     {
         $validate = $request->validate([
-            "title" => ["required","max:255",Rule::unique('cms', 'title')->ignore($cms->uuid,"uuid")],
+            "title" => ["required","max:255",Rule::unique('portofolio', 'title')->ignore($portofolio->uuid,"uuid")],
             "deskripsi" => ["required","max:255"],
             "isi" => ["required","max:1000"],
             "gambar" => ["nullable","image","mimes:jpeg,png,jpg,gif,svg","max:512000"],
@@ -105,34 +89,32 @@ class CmsController extends Controller
         ]);
         if ($request->hasFile('gambar')) {
             $filename = uniqid() . '.' . $request->file('gambar')->getClientOriginalExtension();
-            $path = $request->file('gambar')->storeAs('cms', $filename, 'public');
-            Storage::disk('public')->delete($cms->gambar);
+            $path = $request->file('gambar')->storeAs('portofolio', $filename, 'public');
+            Storage::disk('public')->delete($portofolio->gambar);
             $validate["gambar"] = $path;
         }
         if ($request->hasFile('pdf')) {
             $filename = uniqid() . '.' . $request->file('pdf')->getClientOriginalExtension();
-            $path = $request->file('pdf')->storeAs('cms-files', $filename, 'public');
-            if (!empty($cms->pdf) && Storage::disk('public')->exists($cms->pdf)) {
-                Storage::disk('public')->delete($cms->pdf);
+            $path = $request->file('pdf')->storeAs('portofolio-files', $filename, 'public');
+            if (!empty($portofolio->pdf) && Storage::disk('public')->exists($portofolio->pdf)) {
+                Storage::disk('public')->delete($portofolio->pdf);
             }
             $validate["pdf"] = $path;
         }
-        $cms->update($validate);
-        return Redirect::route('cms.index')->with('success', 'Data berhasil di update');
+        $portofolio->update($validate);
+        return Redirect::route('portofolio.index')->with('success', 'Data berhasil di update');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cms $cms)
+    public function destroy(Portofolio $portofolio)
     {
-        $gambar = $cms->gambar;
-        $pdf = $cms->pdf;
-        $cms->delete();
-        if ($gambar) {
-            Storage::disk('public')->delete($gambar);
-        }
+        $gambar = $portofolio->gambar;
+        $pdf = $portofolio->pdf;
+        $portofolio->delete();
+        if ($gambar) Storage::disk('public')->delete($gambar);
         if($pdf) Storage::disk('public')->delete($pdf);
-        return Redirect::route('cms.index')->with('success', 'Data berhasil di hapus');
+        return Redirect::route('portofolio.index')->with('success', 'Data berhasil di hapus');
     }
 }

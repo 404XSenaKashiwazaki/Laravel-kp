@@ -14,7 +14,7 @@
             </div>
 
 
-{{-- @dd(url(url()->current()."/#tentang")) --}}
+{{-- @dd(request()->routeIs('profiles.*')) --}}
             {{-- Desktop Menu --}}
             <div class="hidden md:flex space-x-8 text-lg">
 
@@ -42,9 +42,9 @@
 
 
 
-                  <a href="{{ route('pekerjaan.index') }}"
-                       class="{{ request()->routeIs('pekerjaan.*') ? 'text-blue-600 font-medium' : '' }} relative block hover:text-blue-600">
-            Pekerjaan
+                  <a href="{{ route('profiles.index') }}"
+                       class="{{ request()->routeIs('profiles.*') ? 'text-blue-600 font-medium' : '' }} relative block hover:text-blue-600">
+            Profile Kami
                     </a>
 
                 @auth
@@ -163,7 +163,10 @@
 <a href="{{ url('/#tentang') }}" class="nav-link hover:text-blue-600">
     Tentang
 </a>
-
+    <a href="{{ route('profiles.index') }}"
+                       class="{{ request()->routeIs('profiles.*') ? 'text-blue-600 font-medium' : '' }} relative block hover:text-blue-600">
+            Profile Kami
+                    </a>
 
 
             @auth

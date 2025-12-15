@@ -22,7 +22,7 @@ class GalleryController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $gallerys = $query->paginate(10);
+        $gallerys = $query->latest()->paginate(10);
 
         return view('gallery.index', [
             'gallerys' => $gallerys,

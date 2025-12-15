@@ -20,7 +20,7 @@ class BankController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $banks = $query->paginate(10);
+        $banks = $query->latest()->paginate(10);
 
         return view('bank.index', [
             'banks' => $banks,

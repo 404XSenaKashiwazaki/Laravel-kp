@@ -28,7 +28,7 @@ class PesananController extends Controller
             });
         }
 
-        $orders = $query->paginate(10);
+        $orders = $query->latest()->paginate(10);
 
         return view("orders.user",["orders" => $orders]);
     }

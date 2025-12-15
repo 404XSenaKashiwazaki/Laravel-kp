@@ -92,12 +92,34 @@
                     </table>
                 </div>
 
+                 <!-- Tombol Aksi -->
+
                 {{-- Footer --}}
                 <div class="px-6 py-5 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
-                    <a href="{{ route('orders.index') }}"
+
+                      <div class="mt-6 flex gap-3">
+         @if ($order->status != "dikirim")
+<form action="{{ route('orders.confirm', $order->id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Yakin?')">
+
+                                    @csrf
+                                    @method('PUT')
+
+                                    <button type="submit"
+                                        class="px-4 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700">
+                                        Konfirmasi
+                                    </button>
+
+                                </form>
+         @endif
+        <a href="{{ route('orders.index') }}"
                        class="inline-flex items-center rounded-md bg-gray-200 px-4 py-1 text-sm font-semibold text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
                         Kembali
                     </a>
+
+
+    </div>
                 </div>
 
             </div>

@@ -8,4 +8,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
       Route::get('/orders/detail/{order}', [OrderController::class, 'detail'])->name('orders.detail');
+      Route::put('/orders/confirm/{order}', [OrderController::class, 'confirm'])->name('orders.confirm');
 });

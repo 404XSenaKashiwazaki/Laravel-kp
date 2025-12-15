@@ -102,7 +102,7 @@
         href="#"
         aria-disabled="true"
     @else
-        href="{{ route('pembayaran.index', $order->user_id) }}"
+        href="{{ route('pembayaran.index', $order->id) }}"
     @endif
     class="inline-flex items-center rounded-md px-4 py-1 text-sm font-semibold
         {{isset($order->payment->uuid)

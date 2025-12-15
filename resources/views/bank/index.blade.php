@@ -10,11 +10,11 @@
 
         {{-- Header --}}
         <div class="flex items-center justify-between mb-4">
-            <h1 class="text-xl font-semibold">Data Bank</h1>
+            <h1 class="text-xl font-semibold">Data Kontak</h1>
 
             <a href="{{ route('bank.create') }}"
                 class="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-                + Tambah Bank
+                + Tambah Kontak
             </a>
         </div>
 

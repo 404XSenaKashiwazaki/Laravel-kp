@@ -10,18 +10,18 @@
 
         {{-- Header --}}
         <div class="flex items-center justify-between mb-4">
-            <h1 class="text-xl font-semibold">Data User</h1>
+            <h1 class="text-xl font-semibold">Data Portofolio</h1>
 
-            <a href="{{ route('user.create') }}"
+            <a href="{{ route('portofolio.create') }}"
                 class="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-                + Tambah User
+                + Tambah Portofolio
             </a>
         </div>
 
         {{-- Search --}}
         <div class="mb-4">
             <form method="GET" class="flex w-full max-w-xs">
-                <input type="text" name="search" placeholder="Cari gti ..."
+                <input type="text" name="search" placeholder="Cari..."
                     value="{{ request('search') }}"
                     class="w-full border rounded-l px-3 py-1 focus:ring-1 focus:ring-blue-500" />
                 <button class="px-4 bg-blue-600 text-white rounded-r hover:bg-blue-700">
@@ -36,43 +36,41 @@
                 <thead class="bg-gray-100">
                     <tr>
                         <th class="px-4 py-2 border">#</th>
-                        <th class="px-4 py-2 border text-left">Nama </th>
-                        <th class="px-4 py-2 border text-left">Email</th>
-                        <th class="px-4 py-2 border text-left">Join</th>
+                        <th class="px-4 py-2 border text-left">Judul</th>
+                        <th class="px-4 py-2 border text-left">Deskripsi</th>
                         <th class="px-4 py-2 border text-center">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @forelse ($users as $index => $product)
+                    @forelse ($portofolio as $index => $product)
                         <tr class="border-b hover:bg-gray-50">
                             <td class="px-4 py-2 border text-center">
-                                {{ $users->firstItem() + $index }}
+                                {{ $portofolio->firstItem() + $index }}
                             </td>
 
                             <td class="px-4 py-2 border flex justify-start items-start gap-1">
-
-                                {{ $product->name }}
+                                @if ($product->gambar)
+                                    <img src="{{ asset('storage/' . $product->gambar) }}"
+                                    class="h-14 w-14 object-cover rounded border">
+                                @else
+                                    <span class="text-gray-400 italic">No Image</span>
+                                @endif
+                                {{ $product->title }}
                             </td>
-
-
-
                             <td class="px-4 py-2 border">
-                                {{ $product->email }}
-                            </td>
-                            <td class="px-4 py-2 border">
-                                {{ $product->created_at->translatedFormat('d F Y H:i') }}
+                                {{ $product->deskripsi }}
                             </td>
                             <td class="px-4 py-2 border text-center flex justify-center gap-2">
 
                                 {{-- Edit --}}
-                                <a href="{{ route('user.edit', $product->id) }}"
+                                <a href="{{ route('portofolio.edit', $product->uuid) }}"
                                     class="px-3 py-1 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600">
                                     Edit
                                 </a>
 
                                 {{-- Delete --}}
-                                <form action="{{ route('user.destroy', $product->id) }}"
+                                <form action="{{ route('portofolio.destroy', $product->uuid) }}"
                                       method="POST"
                                       onsubmit="return confirm('Yakin ingin menghapus?')">
 
@@ -101,7 +99,7 @@
 
         {{-- Pagination --}}
         <div class="mt-4">
-            {{ $users->links() }}
+            {{ $portofolio->links() }}
         </div>
 
     </div>

@@ -17,7 +17,7 @@
                 <img
                     src="{{ asset('storage/' . $data->gambar) }}"
                     alt="{{ $data->title }}"
-                    class="w-full h-96 rounded-lg "
+                  class="w-full h-96 rounded-lg "
                 >
             </div>
         @endif
@@ -43,7 +43,7 @@
         {{-- Tombol Kembali --}}
         <div class="mt-8">
             <a
-                href="{{ route("profiles.legalitas") }}"
+                href="{{ route("profiles.portofolio") }}"
                 class="inline-flex items-center rounded-md bg-gray-200 px-4 py-1 text-sm font-semibold text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
 
                 ← Kembali

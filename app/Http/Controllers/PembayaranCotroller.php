@@ -50,7 +50,8 @@ class PembayaranCotroller extends Controller
      */
     public function create(string $id)
     {
-         $query = Order::with(['user', 'items.product'])->where('user_id', $id)->first();
+         $query = Order::with(['user', 'items.product'])->where('id', $id)->first();
+        
          $bank = Bank::all();
         return view("payment.form", ["order" => $query,"bank" => $bank]);
     }

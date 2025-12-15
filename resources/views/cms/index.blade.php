@@ -56,7 +56,7 @@
                                 @else
                                     <span class="text-gray-400 italic">No Image</span>
                                 @endif
-                                {{ $product->name }}
+                                {{ $product->title }}
                             </td>
                             <td class="px-4 py-2 border">
                                 {{ $product->deskripsi }}

@@ -54,30 +54,30 @@
 
         </div>
         <div>
-            <p class="text-sm text-gray-500 dark:text-gray-300">Total Konten</p>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Total Legalitas</p>
             <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $totalKonten }}</h2>
         </div>
     </div>
 
      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 flex items-center gap-4">
         <div class="p-3 bg-purple-100 dark:bg-purple-400 rounded-full">
-             <svg xmlns="http://www.w3.org/2000/svg"
-             class="h-8 w-8 text-green-600 dark:text-green-300"
-             fill="none"
-             viewBox="0 0 24 24"
-             stroke="currentColor">
-            <path stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2
-                     3 .895 3 2-1.343 2-3 2m0-10
-                     V6m0 12v-2m9-4
-                     a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+            <svg xmlns="http://www.w3.org/2000/svg"
+     class="h-8 w-8 text-green-600 dark:text-green-300"
+     fill="none"
+     viewBox="0 0 24 24"
+     stroke="currentColor">
+    <path stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 6V5a3 3 0 013-3h0a3 3 0 013 3v1m-9 0h9
+             a2 2 0 012 2v10a2 2 0 01-2 2H7
+             a2 2 0 01-2-2V8a2 2 0 012-2z" />
+</svg>
+
         </div>
         <div>
-            <p class="text-sm text-gray-500 dark:text-gray-300">Transaksi</p>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $totalPembayaran }}</h2>
+            <p class="text-sm text-gray-500 dark:text-gray-300">Total Portofolio</p>
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{{ $totalPortofolio }}</h2>
         </div>
     </div>
 
@@ -98,14 +98,14 @@
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['User', 'Produk', 'Pesanan',"Transaksi"],
+            labels: ['User', 'Produk', 'Pesanan'],
             datasets: [{
                 label: 'Total Data',
                 data: [
                     {{ $totalUser }},
                     {{ $totalProduk }},
                     {{ $totalPesanan }},
- {{ $totalPembayaran }}
+
                 ],
                 backgroundColor: [
                     'rgba(59, 130, 246, 0.7)',   // Biru

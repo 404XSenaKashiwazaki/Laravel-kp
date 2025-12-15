@@ -20,7 +20,7 @@ class HomeController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $products = $query->paginate(10);
+        $products = $query->latest()->paginate(10);
         $gallery = Gallery::latest()->get();
         // $products = Product::all();
         $site = Site::first();

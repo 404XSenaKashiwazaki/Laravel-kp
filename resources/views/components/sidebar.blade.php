@@ -86,10 +86,29 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M7 8h10M7 12h6m-6 4h10M5 4h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5a1 1 0 011-1z" />
         </svg>
-        <span x-show="!collapsed">Cms</span>
+        <span x-show="!collapsed">Legalitas</span>
     </a>
 </li>
+<li>
+    <a href="{{ route('portofolio.index') }}"
+       class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('portofolio.*') ? 'bg-gray-300 hover:bg-gray-400 font-medium' : '' }}">
+        <!-- DOCUMENT ICON -->
+      <svg xmlns="http://www.w3.org/2000/svg"
+     class="h-5 w-5"
+     fill="none"
+     viewBox="0 0 24 24"
+     stroke="currentColor">
+    <path stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 7a2 2 0 012-2h4l2 2h8
+             a2 2 0 012 2v8a2 2 0 01-2 2H5
+             a2 2 0 01-2-2V7z" />
+</svg>
 
+        <span x-show="!collapsed">Portofolio</span>
+    </a>
+</li>
 <!-- Product -->
 <li>
     <a href="{{ route('product.index') }}"
@@ -119,15 +138,27 @@
     <a href="{{ route('bank.index') }}"
        class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('bank.*') ? 'bg-gray-300 hover:bg-gray-400 font-medium' : '' }}">
         <!-- BANK ICON -->
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                d="M3 10l9-6 9 6M4 10v10h4v-6h8v6h4V10M2 20h20" />
-        </svg>
-        <span x-show="!collapsed">Bank</span>
+        <svg xmlns="http://www.w3.org/2000/svg"
+     class="h-5 w-5"
+     fill="none"
+     viewBox="0 0 24 24"
+     stroke="currentColor">
+    <path stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8 10h.01M12 10h.01M16 10h.01
+             M21 12c0 4.418-4.03 8-9 8
+             a9.77 9.77 0 01-4-.8L3 20
+             l1.3-3.9A7.77 7.77 0 013
+             12c0-4.418 4.03-8 9-8
+             s9 3.582 9 8z" />
+</svg>
+
+        <span x-show="!collapsed">Kontak</span>
     </a>
 </li>
 
-<li>
+{{-- <li>
     <a href="{{ route('payment.index') }}"
        class="flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-100 {{ request()->routeIs('payment.*') ? 'bg-gray-300 hover:bg-gray-400 font-medium' : '' }}">
         <!-- PAYMENT ICON -->
@@ -138,7 +169,7 @@
         </svg>
         <span x-show="!collapsed">Pembayaran</span>
     </a>
-</li>
+</li> --}}
 
 <li>
     <a href="{{ route('orders.index') }}"

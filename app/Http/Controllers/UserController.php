@@ -23,7 +23,7 @@ class UserController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $users = $query->paginate(10);
+        $users = $query->latest()->paginate(10);
 
         return view('user.index', [
             'users' => $users,

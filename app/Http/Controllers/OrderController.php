@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class OrderController extends Controller
 {
@@ -24,7 +25,7 @@ class OrderController extends Controller
             });
         }
 
-        $orders = $query->paginate(10);
+        $orders = $query->latest()->paginate(10);
         return view("orders.index",["orders" => $orders]);
     }
 
@@ -48,10 +49,16 @@ class OrderController extends Controller
             });
         }
 
-        $orders = $query->paginate(10);
+        $orders = $query->latest()->paginate(10);
 
 
         return view("orders.index",["orders" => $orders]);
+    }
+
+    public function confirm(Order $order)
+    {
+        $order->update(["status" => "dikirim"]);
+        return Redirect::route('orders.index')->with('success', 'Data berhasil di konfirmasi');
     }
 
 }
