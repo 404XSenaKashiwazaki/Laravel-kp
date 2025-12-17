@@ -64,7 +64,7 @@
 
                     {{-- Pesanan --}}
                     <a href="{{ route('pesanan.index', auth()->user()->id) }}"
-                       class="{{ request()->routeIs('pesanan.*') ? 'text-blue-600 font-medium' : '' }} block hover:text-blue-600">
+                       class="{{ (request()->routeIs('pesanan.*') || request()->routeIs('pembayaran.*')) ? 'text-blue-600 font-medium' : '' }} block hover:text-blue-600">
                         Pesanan
                     </a>
 

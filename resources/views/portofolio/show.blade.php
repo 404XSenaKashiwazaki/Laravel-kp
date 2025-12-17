@@ -4,7 +4,7 @@
         {{-- Header --}}
         <div class="mb-6 flex items-center justify-between">
             <h1 class="text-2xl font-bold text-gray-800">
-                Daftar Artikel
+                Portofolio
             </h1>
         </div>
 
@@ -59,9 +59,18 @@
         </div>
 
         {{-- Pagination --}}
-        <div class="mt-8">
+
+
+        <div class="flex flex-col sm:flex-row gap-1 mt-10">
+             <div class="mt-8">
             {{ $artikels->links() }}
         </div>
+             <a
+                    href="{{ route("profiles.index") }}"
+                    class="inline-flex items-center rounded-md bg-gray-200 px-4 py-1 text-sm font-semibold text-gray-800 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600">
 
+                    ← Kembali
+                </a>
+        </div>
     </div>
 </x-app-layout>
