@@ -71,21 +71,29 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+   public function update(Request $request, User $user)
     {
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique('products', 'name')->ignore($user->id)],
-            'password' => ['nullable', 'string', 'max:255'],
+            'email' => [
+                'required', 'string', 'lowercase', 'email', 'max:255',
+                Rule::unique('users', 'email')->ignore($user->id)
+            ],
+            'password' => ['nullable', 'string', 'min:6'],
             'role' => ['required','string', 'max:255'],
         ]);
 
         if ($request->filled('password')) {
             $validate['password'] = Hash::make($request->password);
+        } else {
+            unset($validate['password']);
         }
+
         $user->update($validate);
-        return Redirect::route('user.index')->with('success', 'Data berhasil di tambahkan');
+
+        return Redirect::route('user.index')->with('success', 'Data berhasil di edit');
     }
+
 
     /**
      * Remove the specified resource from storage.

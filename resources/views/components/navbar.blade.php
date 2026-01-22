@@ -5,13 +5,12 @@
         <div class="flex items-center justify-between h-16">
 
             {{-- Logo --}}
-            <div class="text-2xl font-bold text-blue-600">
+            <div class="text-2xl font-bold text-black max-w-[200px] sm:max-w-[260px] lg:max-w-none truncate">
+    <a href="{{ url('/') }}" class="block truncate">
+        {{ $site->name }}
+    </a>
+</div>
 
-                 <a href="{{ url('/') }}"
-                   >
-                     {{ $site->name }}
-                </a>
-            </div>
 
 
 {{-- @dd(request()->routeIs('profiles.*')) --}}
@@ -29,7 +28,7 @@
 
                 {{-- Gallery --}}
               <a href="{{ url('/#gallery') }}" class="nav-link hover:text-blue-600">
-    Gallery
+    Galeri
 </a>
 
 <a href="{{ url('/#produk') }}" class="nav-link hover:text-blue-600">
@@ -89,7 +88,7 @@
                   d="M4.5 20.25a8.25 8.25 0 0115 0" />
         </svg>
         <span class="hidden lg:inline">
-            {{ auth()->user()->name }}
+            {{-- {{ auth()->user()->name }} --}}
         </span>
         <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd"

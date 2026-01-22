@@ -29,7 +29,13 @@
         </label>
         <label class="block">
             <span class="text-sm font-medium text-gray-700">Password</span>
-            <input type="password" value="{{ old('password', $user->password ?? '') }}" name="password" class=" mt-2  rounded-md block  w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" required>
+            <input type="password"
+                name="password"
+                class="mt-2 rounded-md block w-full text-sm text-gray-600"
+                {{ isset($user) ? '' : 'required' }}>
+            @if(isset($user))
+                <small class="text-gray-500">Kosongkan jika tidak ingin mengubah password</small>
+            @endif
         </label>
         <label class="block">
             <span class="text-sm font-medium text-gray-700">Role</span>

@@ -10,11 +10,11 @@
 
         {{-- Header --}}
         <div class="flex items-center justify-between mb-4">
-            <h1 class="text-xl font-semibold">Data Gallery</h1>
+            <h1 class="text-xl font-semibold">Data Galeri</h1>
 
             <a href="{{ route('gallery.create') }}"
                 class="px-4 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">
-                + Tambah Gallery
+                + Tambah Galeri
             </a>
         </div>
 

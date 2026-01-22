@@ -28,8 +28,8 @@ class SiteController extends Controller
     {
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('site', 'name')->ignore($site->uuid, "uuid")],
-            'deskripsi' => ['required', 'string', 'max:255'],
-            'tentang' => ['required', 'string', 'max:255'],
+            'deskripsi' => ['required', 'string'],
+            'tentang' => ['required', 'string'],
             'alamat' => ['required', 'string', 'max:255'],
             "gambar" => ["nullable","image","mimes:jpeg,png,jpg,gif,svg","max:512000"]
         ]);

@@ -112,8 +112,13 @@
     {{isset($order->payment->uuid) ? 'Sudah Dibayar' : 'Bayar Sekarang' }}
                         </a>
                     @endif
+<a href="{{ route('pesanan.pdf', $order->id) }}"
+   target="_blank"
+   class="inline-flex items-center rounded-md bg-red-600 px-4 py-1 text-sm font-semibold text-white hover:bg-red-700">
+    Cetak PDF
+</a>
 
-                    @if ($order->status == "dikirim")
+                    {{-- @if ($order->status == "dikirim")
                     <form action="{{ route('pesanan.selesai', $order->id) }}"
                                       method="POST"
                                       onsubmit="return confirm('Yakin?')">
@@ -127,7 +132,7 @@
                                     </button>
 
                                 </form>
-                    @endif
+                    @endif --}}
                 </div>
 
             </div>

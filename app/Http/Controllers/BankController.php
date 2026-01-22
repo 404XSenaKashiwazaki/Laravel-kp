@@ -69,7 +69,7 @@ class BankController extends Controller
             "note" => ["required","max:255"],
         ]);
         $bank->update($validate);
-        return Redirect::route('bank.index')->with('success', 'Data berhasil di tambahkan');
+        return Redirect::route('bank.index')->with('success', 'Data berhasil di edit');
     }
 
     /**
@@ -78,6 +78,6 @@ class BankController extends Controller
     public function destroy(Bank $bank)
     {
         $bank->delete();
-        return Redirect::route('bank.index')->with('success', 'Data berhasil di tambahkan');
+        return Redirect::route('bank.index')->with('success', 'Data berhasil di hapus');
     }
 }

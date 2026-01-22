@@ -57,7 +57,7 @@ class OrderController extends Controller
 
     public function confirm(Order $order)
     {
-        $order->update(["status" => "dikirim"]);
+        $order->update(["status" => "selesai"]);
         return Redirect::route('orders.index')->with('success', 'Data berhasil di konfirmasi');
     }
 

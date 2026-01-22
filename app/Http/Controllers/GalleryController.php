@@ -44,7 +44,7 @@ class GalleryController extends Controller
     {
         $validate = $request->validate([
             "name" => ["required","max:255","unique:gallery,name"],
-            "deskripsi" => ["required","max:255"],
+            "deskripsi" => ["required","max:1000"],
             "gambar" => ["required","image","mimes:jpeg,png,jpg,gif,svg","max:512000"]
         ]);
         if ($request->hasFile('gambar')) {
@@ -72,7 +72,7 @@ class GalleryController extends Controller
     {
         $validate = $request->validate([
             "name" => ["required","max:255",Rule::unique('gallery', 'name')->ignore($gallery->uuid,"uuid")],
-            "deskripsi" => ["required","max:255"],
+            "deskripsi" => ["required","max:1000"],
             "gambar" => ["nullable","image","mimes:jpeg,png,jpg,gif,svg","max:512000"]
         ]);
         if ($request->hasFile('gambar')) {

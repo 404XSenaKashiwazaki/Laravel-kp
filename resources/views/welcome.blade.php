@@ -14,7 +14,7 @@
     {{-- FOOTER --}}
     <footer class="bg-gray-800 text-white py-6 mt-12 mb-0">
         <div class="max-w-7xl mx-auto text-center text-sm sm:text-base">
-            <p>&copy; {{ date('Y') }} MyCompany. All Rights Reserved.</p>
+            <p>&copy; {{ date('Y') }} {{$site->name}}. All Rights Reserved.</p>
         </div>
     </footer>
 </x-app-layout>

@@ -120,33 +120,32 @@
     </div>
 
     <script>
-    const kontakSelect = document.getElementById('kontak');
-    const btnWa = document.getElementById('btnWa');
+const kontakSelect = document.getElementById('kontak');
+const btnWa = document.getElementById('btnWa');
 
-    kontakSelect.addEventListener('change', function () {
-        const selectedOption = this.options[this.selectedIndex];
-        const waNumber = selectedOption.getAttribute('data-wa');
+kontakSelect.addEventListener('change', function () {
+    const selectedOption = this.options[this.selectedIndex];
+    const waNumber = selectedOption.getAttribute('data-wa');
 
-        if (!waNumber) {
-            btnWa.href = 'javascript:void(0)';
-            btnWa.classList.remove('bg-sky-600', 'hover:bg-sky-700', 'cursor-pointer');
-            btnWa.classList.add('bg-gray-400', 'cursor-not-allowed');
-            return;
-        }
+    if (!waNumber) {
+        btnWa.href = 'javascript:void(0)';
+        btnWa.classList.remove('bg-sky-600', 'hover:bg-sky-700', 'cursor-pointer');
+        btnWa.classList.add('bg-gray-400', 'cursor-not-allowed');
+        return;
+    }
 
-    
-        const message = encodeURIComponent(
-            `Halo admin, saya ingin melanjutkan pesanan.\n\n` +
-            `Order ID: {{ $order->code }}\n` +
-            `Total: Rp {{ number_format($order->total_amount, 0, ',', '.') }}`
-        );
+    const message = encodeURIComponent(
+        `Halo admin, saya ingin melanjutkan pesanan.\n\n` +
+        `Order ID: {{ $order->code }}\n` +
+        `Total: Rp {{ number_format($order->total_amount, 0, ',', '.') }}`
+    );
 
-        btnWa.href = `https://wa.me/${waNumber}?text=${message}`;
-        btnWa.target = "_blank";
+    btnWa.href = `https://wa.me/${waNumber}?text=${message}`;
+    btnWa.target = "_self"; // menimpa halaman
 
-        btnWa.classList.remove('bg-gray-400', 'cursor-not-allowed');
-        btnWa.classList.add('bg-sky-600', 'hover:bg-sky-700', 'cursor-pointer');
-    });
+    btnWa.classList.remove('bg-gray-400', 'cursor-not-allowed');
+    btnWa.classList.add('bg-sky-600', 'hover:bg-sky-700', 'cursor-pointer');
+});
 </script>
 
 </x-app-layout>

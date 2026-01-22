@@ -110,7 +110,7 @@
                                 </div>
 
                                 <div class="mt-4 flex flex-col items-start justify-between gap-3 border-t border-gray-200 pt-4 text-sm sm:flex-row sm:items-center dark:border-gray-700">
-                                    <a href="{{ route('home') }}"
+                                    <a href="{{ route('home') }}/#produk"
                                        class="inline-flex items-center rounded-md bg-gray-200 px-4 py-1 text-sm font-semibold text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:focus:ring-gray-500">
                                         Lanjut Belanja
                                     </a>

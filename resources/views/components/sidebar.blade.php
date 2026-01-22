@@ -131,7 +131,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 16l4.5-4.5a1 1 0 011.4 0L14 16m-2-2l2-2a1 1 0 011.4 0L20 14m-8-8a2 2 0 110 4 2 2 0 010-4z" />
         </svg>
-        <span x-show="!collapsed">Gallery</span>
+        <span x-show="!collapsed">Galeri</span>
     </a>
 </li>
 <li>

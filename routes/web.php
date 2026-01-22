@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CetakPdfController;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -23,6 +24,8 @@ Route::prefix('profiles')->name('profiles.')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/pesanan/{id}/pdf', [CetakPdfController::class, 'pdf'])->name('pesanan.pdf');
+
     Route::get('/pesanan/{id}', [PesananController::class, "index"])->name("pesanan.index");
     Route::get('/pesanan/detail/{id}', [PesananController::class, "detail"])->name("pesanan.detail");
      Route::post('/pesanan/confirm/{order}', [PesananController::class, "finish"])->name("pesanan.selesai");

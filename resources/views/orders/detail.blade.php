@@ -98,7 +98,7 @@
                 <div class="px-6 py-5 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
 
                       <div class="mt-6 flex gap-3">
-         @if ($order->status != "dikirim")
+         @if (!in_array($order->status, ['selesai']))
 <form action="{{ route('orders.confirm', $order->id) }}"
                                       method="POST"
                                       onsubmit="return confirm('Yakin?')">
